@@ -10,12 +10,14 @@ RUN apt-get install -y wget python git cmake xz-utils lsb-release sudo
 
 WORKDIR /opt
 
-RUN wget https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz
-RUN tar zxf emsdk-portable.tar.gz
+#RUN wget https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz
+#RUN tar zxf emsdk-portable.tar.gz
 
-WORKDIR /opt/emsdk-portable
+#WORKDIR /opt/emsdk-portable
+RUN git clone https://github.com/emscripten-core/emsdk.git
+WORKDIR /opt/emsdk
 
-RUN ./emsdk update
+RUN ./emsdk update-tags
 RUN ./emsdk install latest
 RUN ./emsdk activate latest
 
